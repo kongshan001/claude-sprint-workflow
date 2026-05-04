@@ -4,12 +4,15 @@
 
 ## 快速开始
 
-### 1. 复制 Skill 文件到你的项目
+### 1. 复制框架到你的项目
 
 ```bash
-# 将 Skill 文件复制到项目的 .claude/skills/ 目录
+# 复制编排器 Skill
 mkdir -p your-project/.claude/skills
 cp .claude/skills/sprint-framework.md your-project/.claude/skills/
+
+# 复制模板目录（编排器会从中读取模板生成文件）
+cp -r templates/ your-project/templates/
 ```
 
 ### 2. 在项目中初始化框架
@@ -20,7 +23,7 @@ cp .claude/skills/sprint-framework.md your-project/.claude/skills/
 /sprint-framework
 ```
 
-框架会交互式收集项目信息，自动创建所有必要文件。
+框架会交互式收集项目信息，读取 `templates/` 下的模板，自动生成所有必要文件。
 
 ### 3. 启动第一个 Sprint
 
@@ -29,6 +32,8 @@ cp .claude/skills/sprint-framework.md your-project/.claude/skills/
 ```
 /sprint-start
 ```
+
+> 初始化完成后可删除 `templates/` 目录，模板已写入 `.claude/` 对应位置。
 
 ## 工作流概览
 
@@ -74,6 +79,7 @@ cp .claude/skills/sprint-framework.md your-project/.claude/skills/
 
 ## 设计特点
 
+- **渐进式披露** — 编排器仅 87 行，模板按需加载，每个文件职责单一
 - **语言无关** — 不绑定任何编程语言
 - **只增不覆盖** — 检测已有文件，跳过不破坏
 - **规则独立** — 使用 `.claude/rules/` 文件，不侵入 CLAUDE.md
